@@ -60,7 +60,7 @@ class BookController extends Controller
             'category' => 'sometimes|required|string|max:255',
             'description' => 'nullable|string',
             'year_published' => 'sometimes|required|integer',
-            // 'cover_image' => 'nullable|url',
+            'image' => 'nullable|url',
             'user_id' => 'sometimes|required|exists:users,id',
         ]);
 
