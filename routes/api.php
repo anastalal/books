@@ -6,7 +6,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\AuthController;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+// use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
@@ -15,12 +15,12 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::post('/register', [AuthController::class, 'register'])
     ->middleware('guest')
-    ->withoutMiddleware(VerifyCsrfToken::class)
+    ->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class])
     ->name('register');
 
 Route::post('/login', [AuthController::class, 'login'])
     ->middleware('guest')
-    ->withoutMiddleware(VerifyCsrfToken::class)
+    ->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class])
     ->name('login');
 Route::get('/books', [BookController::class, 'index']);    
 Route::get('/books/{id}', [BookController::class, 'show']);   
